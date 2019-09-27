@@ -29,3 +29,9 @@ def test_schedule_multi_day(nhl_scraper):
     assert(dc[17] == 2)
     assert(dc[3] == 2)
     assert(dc[11] == 0)
+
+
+def test_players(nhl_scraper):
+    df = nhl_scraper.players()
+    print(df)
+    assert(df[df["name"] == "Jason Spezza"].iloc(0)[0]["teamId"] == 10)

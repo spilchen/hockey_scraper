@@ -32,12 +32,17 @@ class EndpointAdapter:
     def schedule_endpoint(self, date):
         return self.get("schedule?date={}".format(date.strftime("%Y-%m-%d")))
 
+    def players_endpoint(self, team_ids):
+        team_str = ",".join(str(n) for n in team_ids)
+        return self.get("teams?teamId={}&expand=team.roster".format(team_str))
+
 
 class Scraper:
     def __init__(self):
         self.ea = EndpointAdapter()
         self.teams_cache = None
         self.schedule_cache = {}
+        self.players_cache = None
 
     def set_endpoint_adapter(self, ea):
         self.ea = ea
@@ -124,6 +129,31 @@ class Scraper:
                 tot_gc[team] += 1
             cur_date = cur_date + datetime.timedelta(days=1)
         return tot_gc
+
+    def players(self):
+        """Returns the full list of all players in the NHL.
+
+        Each player is returned with their teamID and playerID.
+
+        :return: All players
+        :rtype: pandas.DataFrame
+        """
+        if self.players_cache is None:
+            team_df = self.teams()
+            self.players_cache = self.ea.players_endpoint(
+                team_df["id"].tolist())
+
+        columns = ["teamId", "playerId", "name"]
+        all_players = []
+        for team in self.players_cache["teams"]:
+            team_id = team["id"]
+            for plyr in team["roster"]["roster"]:
+                player_id = plyr["person"]["id"]
+                player_name = plyr["person"]["fullName"]
+                all_players.append({columns[0]: team_id,
+                                    columns[1]: player_id,
+                                    columns[2]: player_name})
+        return pd.DataFrame(data=all_players, columns=columns)
 
     def _teams_playing_one_day(self, date):
         if date not in self.schedule_cache:
