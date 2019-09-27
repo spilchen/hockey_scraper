@@ -3,11 +3,13 @@
 import objectpath
 import requests
 import json
+import datetime
 import pandas as pd
+from collections import defaultdict
 
 
 class EndpointAdapter:
-    NHL_ENDPOINT = "https://statsapi.web.nhl.com/api/v1"
+    NHL_URL = "https://statsapi.web.nhl.com/api/v1"
 
     def get(self, api):
         """Send an API request to the URI and return the response as JSON
@@ -17,7 +19,7 @@ class EndpointAdapter:
         :return: JSON document of the reponse
         :raises: RuntimeError if any response comes back with an error
         """
-        response = requests.get("{}/{}".format(self.NHL_ENDPOINT, api),
+        response = requests.get("{}/{}".format(self.NHL_URL, api),
                                 params={'format': 'json'})
         jresp = response.json()
         if "error" in jresp:
@@ -27,11 +29,15 @@ class EndpointAdapter:
     def teams_endpoint(self):
         return self.get("teams")
 
+    def schedule_endpoint(self, date):
+        return self.get("schedule?date={}".format(date.strftime("%Y-%m-%d")))
+
 
 class Scraper:
     def __init__(self):
         self.ea = EndpointAdapter()
         self.teams_cache = None
+        self.schedule_cache = {}
 
     def set_endpoint_adapter(self, ea):
         self.ea = ea
@@ -83,6 +89,48 @@ class Scraper:
                       "abbreviation": "abbrev"}
             path = "$..teams.({})".format(",".join(colmap.keys()))
             data = t.execute(path)
-            self.teams_cache = pd.DataFrame(data=data, columns=colmap.keys())
-            self.teams_cache = self.teams_cache.rename(columns=colmap)
+            df = pd.DataFrame(data=data, columns=colmap.keys())
+            self.teams_cache = df.rename(columns=colmap)
         return self.teams_cache
+
+    def games_count(self, start_date, end_date):
+        """Returns a count of games for each team between a range of dates.
+
+        The range of dates is inclusive.  The result is a dictionary, where the
+        key is a team ID and the values is the number of games played within
+        the date range.
+
+        :param start_date: Starting date
+        :type start_date: datetime.datetime
+        :param end_date: Ending date (inclusive)
+        :type end_date: datetime.datetime
+        :return: dict of keys (teamID) to values (number of games played)
+        :rtype: defaultdict
+
+        >>> s.games_count(datetime.datetime(2019,10,1),datetime.datetime(2019,10,6))
+		>>> defaultdict(<function hockey_scraper.nhl.Scraper.games_count.<locals>.<lambda>()>,
+            {9: 2, 10: 3, 15: 3, 19: 2, 23: 2, 22: 2, 28: 3, 54: 2, 13: 2,
+             14: 3, 52: 3, 3: 2, 7: 2, 5: 2, 8: 2, 12: 3, 30: 2, 18: 2,
+             6: 2, 25: 3, 20: 2, 21: 2, 53: 2, 24: 2, 16: 1, 4: 1, 1: 2,
+             2: 2, 29: 2, 17: 2, 26: 1})
+        """ # noqa
+        if start_date > end_date:
+            raise RuntimeError("End date must be beyond start")
+        cur_date = start_date
+        tot_gc = defaultdict(lambda: 0)
+        while cur_date <= end_date:
+            teams_playing = self._teams_playing_one_day(cur_date)
+            for team in teams_playing:
+                tot_gc[team] += 1
+            cur_date = cur_date + datetime.timedelta(days=1)
+        return tot_gc
+
+    def _teams_playing_one_day(self, date):
+        if date not in self.schedule_cache:
+            r = self.ea.schedule_endpoint(date)
+            t = objectpath.Tree(r)
+            data = t.execute("$..dates[0]..games.teams..(id)")
+            self.schedule_cache[date] = []
+            for team in data:
+                self.schedule_cache[date].append(team["id"])
+        return self.schedule_cache[date]

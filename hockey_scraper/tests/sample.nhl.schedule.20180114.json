@@ -1,0 +1,221 @@
+{
+  "totalItems" : 4,
+  "totalEvents" : 0,
+  "totalGames" : 4,
+  "totalMatches" : 0,
+  "wait" : 10,
+  "dates" : [ {
+    "date" : "2018-01-14",
+    "totalItems" : 4,
+    "totalEvents" : 0,
+    "totalGames" : 4,
+    "totalMatches" : 0,
+    "games" : [ {
+      "gamePk" : 2017020681,
+      "link" : "/api/v1/game/2017020681/feed/live",
+      "gameType" : "R",
+      "season" : "20172018",
+      "gameDate" : "2018-01-14T17:30:00Z",
+      "status" : {
+        "abstractGameState" : "Final",
+        "codedGameState" : "7",
+        "detailedState" : "Final",
+        "statusCode" : "7",
+        "startTimeTBD" : false
+      },
+      "teams" : {
+        "away" : {
+          "leagueRecord" : {
+            "wins" : 18,
+            "losses" : 18,
+            "ot" : 7,
+            "type" : "league"
+          },
+          "score" : 4,
+          "team" : {
+            "id" : 17,
+            "name" : "Detroit Red Wings",
+            "link" : "/api/v1/teams/17"
+          }
+        },
+        "home" : {
+          "leagueRecord" : {
+            "wins" : 22,
+            "losses" : 17,
+            "ot" : 6,
+            "type" : "league"
+          },
+          "score" : 0,
+          "team" : {
+            "id" : 16,
+            "name" : "Chicago Blackhawks",
+            "link" : "/api/v1/teams/16"
+          }
+        }
+      },
+      "venue" : {
+        "id" : 5092,
+        "name" : "United Center",
+        "link" : "/api/v1/venues/5092"
+      },
+      "content" : {
+        "link" : "/api/v1/game/2017020681/content"
+      }
+    }, {
+      "gamePk" : 2017020680,
+      "link" : "/api/v1/game/2017020680/feed/live",
+      "gameType" : "R",
+      "season" : "20172018",
+      "gameDate" : "2018-01-14T20:00:00Z",
+      "status" : {
+        "abstractGameState" : "Final",
+        "codedGameState" : "7",
+        "detailedState" : "Final",
+        "statusCode" : "7",
+        "startTimeTBD" : false
+      },
+      "teams" : {
+        "away" : {
+          "leagueRecord" : {
+            "wins" : 25,
+            "losses" : 16,
+            "ot" : 4,
+            "type" : "league"
+          },
+          "score" : 4,
+          "team" : {
+            "id" : 20,
+            "name" : "Calgary Flames",
+            "link" : "/api/v1/teams/20"
+          }
+        },
+        "home" : {
+          "leagueRecord" : {
+            "wins" : 20,
+            "losses" : 17,
+            "ot" : 8,
+            "type" : "league"
+          },
+          "score" : 1,
+          "team" : {
+            "id" : 12,
+            "name" : "Carolina Hurricanes",
+            "link" : "/api/v1/teams/12"
+          }
+        }
+      },
+      "venue" : {
+        "id" : 5066,
+        "name" : "PNC Arena",
+        "link" : "/api/v1/venues/5066"
+      },
+      "content" : {
+        "link" : "/api/v1/game/2017020680/content"
+      }
+    }, {
+      "gamePk" : 2017020679,
+      "link" : "/api/v1/game/2017020679/feed/live",
+      "gameType" : "R",
+      "season" : "20172018",
+      "gameDate" : "2018-01-15T00:30:00Z",
+      "status" : {
+        "abstractGameState" : "Final",
+        "codedGameState" : "7",
+        "detailedState" : "Final",
+        "statusCode" : "7",
+        "startTimeTBD" : false
+      },
+      "teams" : {
+        "away" : {
+          "leagueRecord" : {
+            "wins" : 22,
+            "losses" : 17,
+            "ot" : 5,
+            "type" : "league"
+          },
+          "score" : 2,
+          "team" : {
+            "id" : 3,
+            "name" : "New York Rangers",
+            "link" : "/api/v1/teams/3"
+          }
+        },
+        "home" : {
+          "leagueRecord" : {
+            "wins" : 24,
+            "losses" : 19,
+            "ot" : 3,
+            "type" : "league"
+          },
+          "score" : 5,
+          "team" : {
+            "id" : 5,
+            "name" : "Pittsburgh Penguins",
+            "link" : "/api/v1/teams/5"
+          }
+        }
+      },
+      "venue" : {
+        "id" : 5034,
+        "name" : "PPG Paints Arena",
+        "link" : "/api/v1/venues/5034"
+      },
+      "content" : {
+        "link" : "/api/v1/game/2017020679/content"
+      }
+    }, {
+      "gamePk" : 2017020682,
+      "link" : "/api/v1/game/2017020682/feed/live",
+      "gameType" : "R",
+      "season" : "20172018",
+      "gameDate" : "2018-01-15T01:00:00Z",
+      "status" : {
+        "abstractGameState" : "Final",
+        "codedGameState" : "7",
+        "detailedState" : "Final",
+        "statusCode" : "7",
+        "startTimeTBD" : false
+      },
+      "teams" : {
+        "away" : {
+          "leagueRecord" : {
+            "wins" : 18,
+            "losses" : 21,
+            "ot" : 6,
+            "type" : "league"
+          },
+          "score" : 3,
+          "team" : {
+            "id" : 23,
+            "name" : "Vancouver Canucks",
+            "link" : "/api/v1/teams/23"
+          }
+        },
+        "home" : {
+          "leagueRecord" : {
+            "wins" : 24,
+            "losses" : 17,
+            "ot" : 5,
+            "type" : "league"
+          },
+          "score" : 2,
+          "team" : {
+            "id" : 30,
+            "name" : "Minnesota Wild",
+            "link" : "/api/v1/teams/30"
+          }
+        }
+      },
+      "venue" : {
+        "id" : 5098,
+        "name" : "Xcel Energy Center",
+        "link" : "/api/v1/venues/5098"
+      },
+      "content" : {
+        "link" : "/api/v1/game/2017020682/content"
+      }
+    } ],
+    "events" : [ ],
+    "matches" : [ ]
+  } ]
+}
