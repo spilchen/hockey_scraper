@@ -4,6 +4,13 @@ nhl_scraper
 
 Scrapes NHL related stats from various websites include the NHL public APIs, ESPN, cbssports.com
 
+Build status
+------------
+
+.. image:: https://travis-ci.com/spilchen/hockey_scraper.svg?branch=master
+    :target: https://travis-ci.com/spilchen/hockey_scraper
+
+
 Installation
 ------------
 
