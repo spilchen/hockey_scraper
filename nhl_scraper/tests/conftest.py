@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 import pytest
-from hockey_scraper import nhl
+from nhl_scraper import nhl
 import mock_nhl
 import datetime
 

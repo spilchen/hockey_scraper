@@ -113,7 +113,7 @@ class Scraper:
         :rtype: defaultdict
 
         >>> s.games_count(datetime.datetime(2019,10,1),datetime.datetime(2019,10,6))
-		>>> defaultdict(<function hockey_scraper.nhl.Scraper.games_count.<locals>.<lambda>()>,
+		>>> defaultdict(<function nhl_scraper.nhl.Scraper.games_count.<locals>.<lambda>()>,
             {9: 2, 10: 3, 15: 3, 19: 2, 23: 2, 22: 2, 28: 3, 54: 2, 13: 2,
              14: 3, 52: 3, 3: 2, 7: 2, 5: 2, 8: 2, 12: 3, 30: 2, 18: 2,
              6: 2, 25: 3, 20: 2, 21: 2, 53: 2, 24: 2, 16: 1, 4: 1, 1: 2,

@@ -1,14 +1,20 @@
 from setuptools import setup
 
 
-setup(name='hockey_scraper',
-      version='0.0.1',
-      description='Scrape hockey data from websites such as NHL.com',
-      url='http://github.com/spilchen/hockey_scraper',
+def readme():
+    with open('README.rst') as f:
+        return f.read()
+
+
+setup(name='nhl_scraper',
+      version='0.0.2',
+      description='Scrape hockey data from various websites',
+      long_description=readme(),
+      url='http://github.com/spilchen/nhl_scraper',
       author='Matt Spilchen',
       author_email='matt.spilchen@gmail.com',
       license='MIT',
-      packages=['hockey_scraper'],
+      packages=['nhl_scraper'],
       setup_requires=["pytest-runner"],
       tests_require=["pytest"],
       classifiers=[
