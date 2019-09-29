@@ -7,7 +7,7 @@ def readme():
 
 
 setup(name='nhl_scraper',
-      version='0.0.2',
+      version='0.0.3',
       description='Scrape hockey data from various websites',
       long_description=readme(),
       url='http://github.com/spilchen/nhl_scraper',

@@ -122,7 +122,7 @@ class Scraper:
         if start_date > end_date:
             raise RuntimeError("End date must be beyond start")
         cur_date = start_date
-        tot_gc = defaultdict(lambda: 0)
+        tot_gc = defaultdict(int)
         while cur_date <= end_date:
             teams_playing = self._teams_playing_one_day(cur_date)
             for team in teams_playing:

@@ -51,7 +51,7 @@ class Parser:
 
     def parse(self, index_offset):
         table = self.soup.find_all('table')[0]
-        headings = ["Player", "Tm"] + \
+        headings = ["name", "Tm"] + \
             [th.get_text().strip().split("\n")[0] for th in
              table.find("thead").find_all("th")[1:]]
         table_body = table.find('tbody')

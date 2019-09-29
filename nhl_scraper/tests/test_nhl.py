@@ -1,6 +1,7 @@
 #!/usb/bin/python
 
 import datetime
+import pickle
 
 
 def test_teams(nhl_scraper):
@@ -35,3 +36,12 @@ def test_players(nhl_scraper):
     df = nhl_scraper.players()
     print(df)
     assert(df[df["name"] == "Jason Spezza"].iloc(0)[0]["teamId"] == 10)
+
+
+def test_pickle(nhl_scraper):
+    dc = nhl_scraper.games_count(datetime.datetime(2018, 1, 14),
+                                 datetime.datetime(2018, 1, 16))
+    tmp = pickle.dumps(dc)
+    new_dc = pickle.loads(tmp)
+    assert(new_dc[17] == 2)
+    assert(new_dc[11] == 0)
